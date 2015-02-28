@@ -7,7 +7,7 @@ module.exports = (robot) ->
   robot.respond /omikuji/i, (msg) ->
     msg.send msg.random ["大吉", "中吉", "小吉"]
 
-  robot.respond /(?:new|add) geojob (.*) (.*), (msg) ->
+  robot.respond /(?:new|add) geojob (.*) (.*)/i, (msg) ->
     new cron msg.match[1], () =>
       request = robot.http("https://maps.googleapis.com/maps/api/geocode/json")
                      .query(address: msg.match[2])
